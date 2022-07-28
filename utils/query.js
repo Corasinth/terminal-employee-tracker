@@ -61,8 +61,8 @@ function addEmployee(newEmployee){
 };
 
 
-async function updateEmployeeRole(){
-    db.query ('', (err, results)=>{
+async function updateEmployeeRole(employeeUpdateInfo){
+    db.query ('UPDATE employees SET employees.role_id = ? WHERE employees.id = ?', employeeUpdateInfo, (err, results)=>{
         err ? console.error(err) : console.table (results)
     })
 }

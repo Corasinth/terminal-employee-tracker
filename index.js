@@ -13,8 +13,8 @@ const inquirer = require('inquirer')
 // viewRoles();
 // addRole(['Wizard', 1000000, 11])
 // viewRoles();
-addEmployee(['Zertex', 'Sand', '114', 1011])
-viewEmployeesByTitle();
+// addEmployee(['Zertex', 'Sand', '114', 1011])
 // viewEmployeesByTitle();
-// updateEmployeeRole()
 // viewEmployeesByTitle();
+updateEmployeeRole([109, 1013])
+viewEmployeesByTitle()
