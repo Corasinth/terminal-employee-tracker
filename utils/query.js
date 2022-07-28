@@ -60,17 +60,22 @@ function addEmployee(newEmployee){
     })
 };
 
-
-async function updateEmployeeRole(employeeUpdateRoleInfo){
-    db.query ('UPDATE employees SET employees.role_id = ? WHERE employees.id = ?', employeeUpdateRoleInfo, (err, results)=>{
+function updateEmployeeRole(employeeUpdateRoleInfo){
+    db.query ('UPDATE employees SET employees.role_id = ? WHERE employees.id = ?;', employeeUpdateRoleInfo, (err, results)=>{
         err ? console.error(err) : console.table (results)
     })
 };
 
-async function updateEmployeeManager(employeeUpdateManagerInfo){
-    db.query ('UPDATE employees SET employees.manager_id = ? WHERE employees.id = ?', employeeUpdateManagerInfo, (err, results)=>{
+function updateEmployeeManager(employeeUpdateManagerInfo){
+    db.query ('UPDATE employees SET employees.manager_id = ? WHERE employees.id = ?;', employeeUpdateManagerInfo, (err, results)=>{
         err ? console.error(err) : console.table (results)
     })
 };
 
-module.exports = {viewDepartments, viewRoles, viewEmployeesByTitle, viewEmployeesByManager, viewEmployeesByDepartment, addDepartment, addRole, addEmployee, updateEmployeeRole, updateEmployeeManager};
+function viewTotalBudget(department){
+    db.query ('SELECT SUM roles.salary FROM roles WHERE roles.department_id = ?;', department, (err, results)=>{
+        err ? console.error(err) : console.log (`The department has a total employee budget of ${results}`)
+    })
+};
+
+module.exports = {viewDepartments, viewRoles, viewEmployeesByTitle, viewEmployeesByManager, viewEmployeesByDepartment, addDepartment, addRole, addEmployee, updateEmployeeRole, updateEmployeeManager, viewTotalBudget};
