@@ -10,11 +10,11 @@ const inquirer = require('inquirer')
 // viewDepartments();
 // addDepartment('Spell Development')
 // viewDepartments();
-addRole()
-viewRoles();
-addRole()
-// addEmployee()
-// viewEmployeesByTitle();
+// viewRoles();
+// addRole(['Wizard', 1000000, 11])
+// viewRoles();
+addEmployee(['Zertex', 'Sand', '114', 1011])
+viewEmployeesByTitle();
 // viewEmployeesByTitle();
 // updateEmployeeRole()
 // viewEmployeesByTitle();

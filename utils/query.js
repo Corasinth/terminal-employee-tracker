@@ -25,19 +25,19 @@ function viewRoles(){
 };
 
 function viewEmployeesByTitle(){
-    db.query ('SELECT employees.first_name AS "First Name", employees.last_name AS "LAST NAME", employees.manager_id "Manager ID", roles.title AS Title, roles.salary AS "Yearly Salary", departments.department_name as Department FROM employees LEFT JOIN roles ON employees.role_id = roles.id LEFT JOIN departments ON departments.id = department_id ORDER BY roles.title;', (err, results)=>{
+    db.query ('SELECT employees.id as ID, employees.first_name AS "First Name", employees.last_name AS "LAST NAME", employees.manager_id "Manager ID", roles.title AS Title, roles.salary AS "Yearly Salary", departments.department_name as Department FROM employees LEFT JOIN roles ON employees.role_id = roles.id LEFT JOIN departments ON departments.id = department_id ORDER BY roles.title;', (err, results)=>{
         err ? console.error(err) : console.table (results);
     })
 };
 
 function viewEmployeesByManager(){
-    db.query ('SELECT employees.first_name AS "First Name", employees.last_name AS "LAST NAME", employees.manager_id "Manager ID", roles.title AS Title, roles.salary AS "Yearly Salary", departments.department_name as Department FROM employees LEFT JOIN roles ON employees.role_id = roles.id LEFT JOIN departments ON departments.id = department_id ORDER BY employees.manager_id;', (err, results)=>{
+    db.query ('SELECT employees.id as ID, employees.first_name AS "First Name", employees.last_name AS "LAST NAME", employees.manager_id "Manager ID", roles.title AS Title, roles.salary AS "Yearly Salary", departments.department_name as Department FROM employees LEFT JOIN roles ON employees.role_id = roles.id LEFT JOIN departments ON departments.id = department_id ORDER BY employees.manager_id;', (err, results)=>{
         err ? console.error(err) : console.table (results);
     })
 };
 
 function viewEmployeesByDepartment(){
-    db.query ('SELECT employees.first_name AS "First Name", employees.last_name AS "LAST NAME", employees.manager_id "Manager ID", roles.title AS Title, roles.salary AS "Yearly Salary", departments.department_name as Department FROM employees LEFT JOIN roles ON employees.role_id = roles.id LEFT JOIN departments ON departments.id = department_id ORDER BY departments.department_name;', (err, results)=>{
+    db.query ('SELECT employees.id as ID, employees.first_name AS "First Name", employees.last_name AS "LAST NAME", employees.manager_id "Manager ID", roles.title AS Title, roles.salary AS "Yearly Salary", departments.department_name as Department FROM employees LEFT JOIN roles ON employees.role_id = roles.id LEFT JOIN departments ON departments.id = department_id ORDER BY departments.department_name;', (err, results)=>{
         err ? console.error(err) : console.table (results);
     })
 };
@@ -48,14 +48,14 @@ function addDepartment(newDepartment){
     })
 };
 
-function addRole(){
-    db.query ('', (err, results)=>{
+function addRole(newRole){
+    db.query ('INSERT INTO roles (title, salary, department_id) VALUES (?, ?, ?);', newRole, (err, results)=>{
         err ? console.error(err) : console.table (results)
     })
 };
 
-function addEmployee(){
-    db.query ('', (err, results)=>{
+function addEmployee(newEmployee){
+    db.query ('INSERT INTO employees (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?);', newEmployee, (err, results)=>{
         err ? console.error(err) : console.table (results)
     })
 };
