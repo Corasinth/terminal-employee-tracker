@@ -13,20 +13,32 @@ const db = sql.createConnection(
 );
 
 async function viewDepartments(){
-    db.query ('', (err, results)=>{
+    db.query ('SELECT * FROM departments;', (err, results)=>{
         err ? console.error(err) : console.table (results)
     })
 };
 
 async function viewRoles(){
-    db.query ('', (err, results)=>{
+    db.query ('SELECT roles.id as "Role ID", roles.title AS "Title", roles.salary "Yearly Salary", departments.department_name AS Department FROM roles LEFT JOIN departments ON roles.department_id = departments.id ORDER BY departments.department_name', (err, results)=>{
         err ? console.error(err) : console.table (results)
     })
 };
 
 async function viewEmployeesByTitle(){
-    db.query ('SELECT employees.first_name, employees.last_name, employees.manager_id, roles.title, roles.salary, departments.department_name FROM employees LEFT JOIN roles ON employees.role_id = roles.id LEFT JOIN departments ON departments.id = department_id ORDER BY roles.title;', (err, results)=>{
-        err ? console.error(err) : console.table ('table', results); console.log ('log', results); console.log ('typeof', typeof results)
+    db.query ('SELECT employees.first_name AS "First Name", employees.last_name AS "LAST NAME", employees.manager_id "Manager ID", roles.title AS Title, roles.salary AS "Yearly Salary", departments.department_name as Department FROM employees LEFT JOIN roles ON employees.role_id = roles.id LEFT JOIN departments ON departments.id = department_id ORDER BY roles.title;', (err, results)=>{
+        err ? console.error(err) : console.table (results);
+    })
+};
+
+function viewEmployeesByManager(){
+    db.query ('SELECT employees.first_name AS "First Name", employees.last_name AS "LAST NAME", employees.manager_id "Manager ID", roles.title AS Title, roles.salary AS "Yearly Salary", departments.department_name as Department FROM employees LEFT JOIN roles ON employees.role_id = roles.id LEFT JOIN departments ON departments.id = department_id ORDER BY employees.manager_id;', (err, results)=>{
+        err ? console.error(err) : console.table (results);
+    })
+};
+
+function viewEmployeesByDepartment(){
+    db.query ('SELECT employees.first_name AS "First Name", employees.last_name AS "LAST NAME", employees.manager_id "Manager ID", roles.title AS Title, roles.salary AS "Yearly Salary", departments.department_name as Department FROM employees LEFT JOIN roles ON employees.role_id = roles.id LEFT JOIN departments ON departments.id = department_id ORDER BY departments.department_name;', (err, results)=>{
+        err ? console.error(err) : console.table (results);
     })
 };
 
@@ -55,4 +67,4 @@ async function updateEmployeeRole(){
     })
 }
 
-module.exports = {viewDepartments, viewRoles, viewEmployeesByTitle, addDepartment, addRole, addEmployee, updateEmployeeRole};
+module.exports = {viewDepartments, viewRoles, viewEmployeesByTitle, viewEmployeesByManager, viewEmployeesByDepartment, addDepartment, addRole, addEmployee, updateEmployeeRole};

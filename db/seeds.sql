@@ -41,7 +41,7 @@ Values
 ('Stanley', 'Hudson', 113, 1000),
 ('Mose', 'Schrute', 101, 1000),
 ('Kelly', 'Kapoor', 109, 1000),
-('Jan', 'Levinson-Gould', 109, 1012),
+('Jan', 'Levinson-Gould', 100, 1012),
 ('David', 'Wallace', 100, NULL);
 
 -- SELECT employees.first_name, employees.last_name, employees.manager_id, roles.title, roles.salary, departments.department_name
