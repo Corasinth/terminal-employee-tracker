@@ -42,8 +42,10 @@ Values
 ('Mose', 'Schrute', 101, 1000),
 ('Kelly', 'Kapoor', 109, 1000),
 ('Jan', 'Levinson-Gould', 109, 1012),
-('David', 'Wallace', 100, NULL)
+('David', 'Wallace', 100, NULL);
 
-SELECT movie_reviews.movie_id, movie_reviews.review, movie_names.movie_name
-FROM movie_reviews
-LEFT JOIN movie_names ON movie_reviews.movie_id = movie_names.id;
+-- SELECT employees.first_name, employees.last_name, employees.manager_id, roles.title, roles.salary, departments.department_name
+-- FROM employees
+-- LEFT JOIN roles ON employees.role_id = roles.id
+-- LEFT JOIN departments ON departments.id = department_id
+-- ORDER BY roles.title;

@@ -1,4 +1,5 @@
-const sql = require('mysql2')
+const sql = require('mysql2');
+const cTable = require('console.table');
 
 const db = sql.createConnection(
     {
@@ -10,10 +11,6 @@ const db = sql.createConnection(
     },
     console.log('Connected to employee_db!')
 );
-
-// SELECT movie_reviews.movie_id, movie_reviews.review, movie_names.movie_name
-// FROM movie_reviews
-// LEFT JOIN movie_names ON movie_reviews.movie_id = movie_names.id;
 
 async function viewDepartments(){
     db.query ('', (err, results)=>{
@@ -27,9 +24,9 @@ async function viewRoles(){
     })
 };
 
-async function viewEmployees(){
-    db.query ('', (err, results)=>{
-        err ? console.error(err) : console.table (results)
+async function viewEmployeesByTitle(){
+    db.query ('SELECT employees.first_name, employees.last_name, employees.manager_id, roles.title, roles.salary, departments.department_name FROM employees LEFT JOIN roles ON employees.role_id = roles.id LEFT JOIN departments ON departments.id = department_id ORDER BY roles.title;', (err, results)=>{
+        err ? console.error(err) : console.table ('table', results); console.log ('log', results); console.log ('typeof', typeof results)
     })
 };
 
@@ -58,4 +55,4 @@ async function updateEmployeeRole(){
     })
 }
 
-modules.export (viewDepartments, viewRoles, viewEmployees, addDepartment, addRole, addEmployee, updateEmployeeRoleasync );
+module.exports = {viewDepartments, viewRoles, viewEmployeesByTitle, addDepartment, addRole, addEmployee, updateEmployeeRole};
