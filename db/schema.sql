@@ -31,4 +31,3 @@ CREATE TABLE employees (
     ON DELETE SET NULL
 );
 ALTER TABLE employees AUTO_INCREMENT = 1000;
-

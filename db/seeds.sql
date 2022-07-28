@@ -44,3 +44,6 @@ Values
 ('Jan', 'Levinson-Gould', 109, 1012),
 ('David', 'Wallace', 100, NULL)
 
+SELECT movie_reviews.movie_id, movie_reviews.review, movie_names.movie_name
+FROM movie_reviews
+LEFT JOIN movie_names ON movie_reviews.movie_id = movie_names.id;
