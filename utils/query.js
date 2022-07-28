@@ -61,10 +61,16 @@ function addEmployee(newEmployee){
 };
 
 
-async function updateEmployeeRole(employeeUpdateInfo){
-    db.query ('UPDATE employees SET employees.role_id = ? WHERE employees.id = ?', employeeUpdateInfo, (err, results)=>{
+async function updateEmployeeRole(employeeUpdateRoleInfo){
+    db.query ('UPDATE employees SET employees.role_id = ? WHERE employees.id = ?', employeeUpdateRoleInfo, (err, results)=>{
         err ? console.error(err) : console.table (results)
     })
-}
+};
 
-module.exports = {viewDepartments, viewRoles, viewEmployeesByTitle, viewEmployeesByManager, viewEmployeesByDepartment, addDepartment, addRole, addEmployee, updateEmployeeRole};
+async function updateEmployeeManager(employeeUpdateManagerInfo){
+    db.query ('UPDATE employees SET employees.manager_id = ? WHERE employees.id = ?', employeeUpdateManagerInfo, (err, results)=>{
+        err ? console.error(err) : console.table (results)
+    })
+};
+
+module.exports = {viewDepartments, viewRoles, viewEmployeesByTitle, viewEmployeesByManager, viewEmployeesByDepartment, addDepartment, addRole, addEmployee, updateEmployeeRole, updateEmployeeManager};

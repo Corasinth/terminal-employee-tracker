@@ -16,5 +16,5 @@ const inquirer = require('inquirer')
 // addEmployee(['Zertex', 'Sand', '114', 1011])
 // viewEmployeesByTitle();
 // viewEmployeesByTitle();
-updateEmployeeRole([109, 1013])
-viewEmployeesByTitle()
+// updateEmployeeRole([109, 1013])
+// viewEmployeesByTitle()
