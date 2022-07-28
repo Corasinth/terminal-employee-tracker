@@ -12,19 +12,19 @@ const db = sql.createConnection(
     console.log('Connected to employee_db!')
 );
 
-async function viewDepartments(){
+function viewDepartments(){
     db.query ('SELECT * FROM departments;', (err, results)=>{
         err ? console.error(err) : console.table (results)
     })
 };
 
-async function viewRoles(){
+function viewRoles(){
     db.query ('SELECT roles.id as "Role ID", roles.title AS "Title", roles.salary "Yearly Salary", departments.department_name AS Department FROM roles LEFT JOIN departments ON roles.department_id = departments.id ORDER BY departments.department_name', (err, results)=>{
         err ? console.error(err) : console.table (results)
     })
 };
 
-async function viewEmployeesByTitle(){
+function viewEmployeesByTitle(){
     db.query ('SELECT employees.first_name AS "First Name", employees.last_name AS "LAST NAME", employees.manager_id "Manager ID", roles.title AS Title, roles.salary AS "Yearly Salary", departments.department_name as Department FROM employees LEFT JOIN roles ON employees.role_id = roles.id LEFT JOIN departments ON departments.id = department_id ORDER BY roles.title;', (err, results)=>{
         err ? console.error(err) : console.table (results);
     })
@@ -42,19 +42,19 @@ function viewEmployeesByDepartment(){
     })
 };
 
-async function addDepartment(){
+function addDepartment(newDepartment){
+    db.query ('INSERT INTO departments (department_name) VALUES (?);', newDepartment, (err, results)=>{
+        err ? console.error(err) : console.table (results)
+    })
+};
+
+function addRole(){
     db.query ('', (err, results)=>{
         err ? console.error(err) : console.table (results)
     })
 };
 
-async function addRole(){
-    db.query ('', (err, results)=>{
-        err ? console.error(err) : console.table (results)
-    })
-};
-
-async function addEmployee(){
+function addEmployee(){
     db.query ('', (err, results)=>{
         err ? console.error(err) : console.table (results)
     })
