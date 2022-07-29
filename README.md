@@ -13,9 +13,6 @@ In addition to being able to see the data in various tables, the app also allows
 * [Installation](#installation)
 * [Credits](#credits)
 * [License](#license)
-* [Features](#features)
-* [Tests](#tests)
-
 
 ## Installation
 
@@ -23,9 +20,9 @@ To install, run an npm install after cloning down the repository.
 
 ## Usage 
 
-To use the app simply run an npm start, or node index.js in your terminal. Below is a brief gif demonstrating the varous features of the app, however, [a video can be found here if there are any issues](). 
+To use the app simply run an npm start, or node index.js in your terminal. Below is a brief gif demonstrating the varous features of the app, however, [a video can be found here if there are any issues](https://drive.google.com/file/d/1SkXCRIzpKHYRVWYMDTNbMEccb2otjDi1/view). 
 
-![alt text](./lib/images/demo-vid.gif)
+![walkthrough of app's features](./assets/images/demo-gif.gif)
 
 ## Credits
 
