@@ -3,9 +3,9 @@ const {viewDepartments, viewRoles, viewEmployees, viewEmployeesByManager, viewEm
 
 
 const actionFunctions = {
-  'View All Departments': viewDepartments,
-  'View All Roles': viewRoles,
-  'View Employees': viewEmployees,
+  'View All Departments': async () => await viewDepartments(),
+  'View All Roles': async () => await viewRoles(),
+  'View Employees': async () => await viewEmployees(),
   'View Employees by Manager': async () => {
     let choicesArr = await getManagers();
     let response = await inquirer.prompt([
@@ -16,7 +16,7 @@ const actionFunctions = {
         name: 'managerList'
     }
   ])
-  viewEmployeesByManager(choicesArr[response.managerList])
+  await viewEmployeesByManager(choicesArr[response.managerList])
 },
 //   'View Employees By Department': viewEmployeesByDepartment,
     'View Employee Budget for a Department': async () => {
@@ -29,7 +29,7 @@ const actionFunctions = {
             choices: departmentList
         }
     ]);
-    viewTotalBudget([departmentList[response.department]]);
+    await viewTotalBudget([departmentList[response.department]]);
 },
     'Add a Department': async () => {
         let response = await inquirer.prompt([
@@ -39,7 +39,7 @@ const actionFunctions = {
                 name: 'name'
             },
         ])
-        addDepartment([response.name])
+        await addDepartment([response.name])
     },
     'Add a Role': async () => {
         let departments = await viewDepartments(true)
@@ -61,7 +61,7 @@ const actionFunctions = {
                 name: 'department'
             }
         ])
-        addRole([response.title, response.salary, departments[response.department]])
+        await addRole([response.title, response.salary, departments[response.department]])
     },
     'Add an Employee': async () => {
         let roleList = await viewRoles(true);
@@ -90,7 +90,7 @@ const actionFunctions = {
                 choices: managerList
             },
         ])
-        addEmployee([response.firstName, response.lastName, roleList[response.role], managerList[response.manager]])
+        await addEmployee([response.firstName, response.lastName, roleList[response.role], managerList[response.manager]])
     },
     "Change an employee's role": async () => {
         let employeeList = await getEmployeeList()
@@ -109,7 +109,7 @@ const actionFunctions = {
                 choices: roleList
             },
         ])
-        updateEmployeeRole([roleList[response.newRole], employeeList[response.employeeList]])
+        await updateEmployeeRole([roleList[response.newRole], employeeList[response.employeeList]])
     },
     "Change an Employee's Manager": async () => {
         let employeeList = await getEmployeeList()
@@ -128,7 +128,7 @@ const actionFunctions = {
                 choices: managerList
             },
         ])
-        updateEmployeeManager([managerList[response.manager], employeeList[response.employeeList]])
+        await updateEmployeeManager([managerList[response.manager], employeeList[response.employeeList]])
     }
 }
 

@@ -11,18 +11,10 @@ const initialQuestions = [
     }
 ];
 
-// const startOver = [
-//     {
-//         type: 'confirm',
-//         message: 'Would you like to return to the start? (y/N)',
-//         name: 'backToStart',
-//         default: 'yes'
-//     }
-// ]
-
 async function questions() {
     let response = await inquirer.prompt(initialQuestions);
-    await actionFunctions[response.actionType]()
+    await actionFunctions[response.actionType]();
+    questions();
 }
 
 questions()

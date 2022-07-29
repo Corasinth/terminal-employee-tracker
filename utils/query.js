@@ -13,7 +13,6 @@ const db = sql.createConnection(
     console.log('Connected to employee_db!')
 );
 
-
 db.queryPromisified = util.promisify(db.query)
 
 async function viewDepartments(object) {
@@ -41,13 +40,12 @@ async function viewRoles(obj) {
         return roleArr
     } else {
         console.table(results)
-    }
+    };
 };
 
-function viewEmployees() {
-    db.query('SELECT employees.id as ID, employees.first_name AS "First Name", employees.last_name AS "LAST NAME", employees.manager_id "Manager ID", roles.title AS Title, roles.salary AS "Yearly Salary", departments.department_name as Department FROM employees LEFT JOIN roles ON employees.role_id = roles.id LEFT JOIN departments ON departments.id = department_id ORDER BY roles.title;', (err, results) => {
-        err ? console.error(err) : console.table(results);
-    })
+async function viewEmployees() {
+    let results = await db.queryPromisified('SELECT employees.id as ID, employees.first_name AS "First Name", employees.last_name AS "LAST NAME", employees.manager_id "Manager ID", roles.title AS Title, roles.salary AS "Yearly Salary", departments.department_name as Department FROM employees LEFT JOIN roles ON employees.role_id = roles.id LEFT JOIN departments ON departments.id = department_id ORDER BY roles.title;');
+    console.table(results);
 };
 
 async function getManagers() {
@@ -65,10 +63,9 @@ async function viewEmployeesByManager(managerID) {
     console.table (results);
 };
 
-function viewEmployeesByDepartment() {
-    db.query('SELECT employees.id as ID, employees.first_name AS "First Name", employees.last_name AS "LAST NAME", employees.manager_id "Manager ID", roles.title AS Title, roles.salary AS "Yearly Salary", departments.department_name as Department FROM employees LEFT JOIN roles ON employees.role_id = roles.id LEFT JOIN departments ON departments.id = department_id ORDER BY departments.department_name;', (err, results) => {
-        err ? console.error(err) : console.table(results);
-    })
+async function viewEmployeesByDepartment() {
+    let results = await db.queryPromisified('SELECT employees.id as ID, employees.first_name AS "First Name", employees.last_name AS "LAST NAME", employees.manager_id "Manager ID", roles.title AS Title, roles.salary AS "Yearly Salary", departments.department_name as Department FROM employees LEFT JOIN roles ON employees.role_id = roles.id LEFT JOIN departments ON departments.id = department_id ORDER BY departments.department_name;');
+    console.table(results);
 };
 
 async function addDepartment(newDepartment) {

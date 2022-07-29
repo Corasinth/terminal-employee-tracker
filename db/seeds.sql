@@ -43,10 +43,3 @@ Values
 ('Kelly', 'Kapoor', 109, 1000),
 ('Jan', 'Levinson-Gould', 100, 1012),
 ('David', 'Wallace', 100, NULL);
-
-SELECT a_a.id as ID, a_a.first_name AS "First Name", a_a.last_name AS "LAST NAME", a_a.manager_id "Manager ID", roles.title AS Title, roles.salary AS "Yearly Salary", departments.department_name as Department 
-FROM employees AS a_a,
-LEFT JOIN roles ON employees.role_id = roles.id 
-LEFT JOIN departments ON departments.id = department_id 
-LEFT JOIN employees AS b_b ON b_b.manager_id = a_a.first_name
-ORDER BY roles.title;
