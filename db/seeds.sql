@@ -43,3 +43,16 @@ Values
 ('Kelly', 'Kapoor', 109, 1000),
 ('Jan', 'Levinson-Gould', 100, 1012),
 ('David', 'Wallace', 100, NULL);
+
+-- SELECT employees.id as ID, employees.first_name AS "First Name", employees.last_name AS "LAST NAME", employees.manager_id "Manager ID", roles.title AS Title, roles.salary AS "Yearly Salary", departments.department_name as Department 
+-- FROM employees
+-- LEFT JOIN roles ON employees.role_id = roles.id 
+-- LEFT JOIN departments ON departments.id = department_id 
+-- LEFT JOIN employees as employees_b ON employees_b.manager_id = employees.first_name
+-- ORDER BY roles.title;
+
+
+SELECT roles.salary 
+-- SUM roles.salary
+FROM roles 
+WHERE roles.department_id = 9;

@@ -1,6 +1,6 @@
 const actionFunctions = require ('./utils/actionFunctions.js');
 const inquirer = require('inquirer');
-const { getManagers, viewEmployeesByManager, getEmployeeList } = require('./utils/query.js');
+const { getManagers, viewEmployeesByManager, getEmployeeList, viewDepartments, viewRoles } = require('./utils/query.js');
 
 const initialQuestions = [
     {
@@ -22,7 +22,7 @@ const initialQuestions = [
 
 async function questions() {
     let response = await inquirer.prompt(initialQuestions);
-    actionFunctions[response.actionType]()
+    await actionFunctions[response.actionType]()
 }
 
 questions()
