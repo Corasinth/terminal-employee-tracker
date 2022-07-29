@@ -1,6 +1,5 @@
 const actionFunctions = require ('./utils/actionFunctions.js');
 const inquirer = require('inquirer');
-const { getManagers, viewEmployeesByManager, getEmployeeList, viewDepartments, viewRoles } = require('./utils/query.js');
 
 const initialQuestions = [
     {

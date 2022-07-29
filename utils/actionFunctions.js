@@ -1,7 +1,9 @@
+//=============== Imports ===============
 const inquirer = require('inquirer')
 const {viewDepartments, viewRoles, viewEmployees, viewEmployeesByManager, viewEmployeesByDepartment, addDepartment, addRole, addEmployee, updateEmployeeRole, updateEmployeeManager, viewTotalBudget, getEmployeeList, getManagers} = require ('./query')
 
 
+//=============== Main Object ===============
 const actionFunctions = {
   'View All Departments': async () => await viewDepartments(),
   'View All Roles': async () => await viewRoles(),
@@ -18,7 +20,18 @@ const actionFunctions = {
   ])
   await viewEmployeesByManager(choicesArr[response.managerList])
 },
-//   'View Employees By Department': viewEmployeesByDepartment,
+  'View Employees By Department': async () => {
+    let departmentsArr = await viewDepartments(true);
+    let response = await inquirer.prompt([
+    {
+        type: 'list',
+        message: 'Please choose a department:',
+        choices: departmentsArr,
+        name: 'departments'
+    }
+  ])
+  await viewEmployeesByDepartment(departmentsArr[response.departments])
+},
     'View Employee Budget for a Department': async () => {
     let departmentList = await viewDepartments(true)
     let response = await inquirer.prompt([
