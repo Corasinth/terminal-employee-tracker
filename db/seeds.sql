@@ -43,9 +43,3 @@ Values
 ('Kelly', 'Kapoor', 109, 1000),
 ('Jan', 'Levinson-Gould', 100, 1012),
 ('David', 'Wallace', 100, NULL);
-
--- SELECT employees.first_name, employees.last_name, employees.manager_id, roles.title, roles.salary, departments.department_name
--- FROM employees
--- LEFT JOIN roles ON employees.role_id = roles.id
--- LEFT JOIN departments ON departments.id = department_id
--- ORDER BY roles.title;
